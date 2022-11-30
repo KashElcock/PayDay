@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * PayDay
  *
@@ -19,9 +21,10 @@ public class PayDay {
             String n = card.getName();
             double w = card.getHoursWorked();
             // ... etc for the other 2 fields
-
+            double r = card.getHourlyRate();
+            double d = card.getDeductionRate();
             // you need to change the parameters on the method to take the input!
-            String result = payday.pay();
+            String result = payday.pay(n, w, r, d);
 
             outputReport.append(result);
         }
@@ -32,14 +35,23 @@ public class PayDay {
 
     /**
      * Takes four parameters:
-     *   "Kris", 21.5, 10.0, 0.05
+     * "Kris", 21.5, 10.0, 0.05
+     * <p>
+     * Notice the data type of each of the four.
      *
-     *   Notice the data type of each of the four.
      * @return a string of the form "Kris 215.00 10.75 204.25”
      */
-    private String pay() {
+    public String pay( String n, Double w, Double r, Double d) {
 
-        return "";
+        /** extras based on the example
+         * double gross = w * r;
+         * double deduction = gross * r;
+         * double net = gross - deduction; */
+        //any type string format, two decimals
+        String result = String.format("%s %.2f %.2f %.2f", n,w,r,d);
+        //result since print can't be tested
+        return result;
+
     }
 
 
@@ -47,7 +59,7 @@ public class PayDay {
      * for the example of how the *pay* method might be used to create a text report
      *
      */
-    private class TimeCard {
+    public class TimeCard {
         private String name;
         private double hoursWorked;
         private double hourlyRate;
